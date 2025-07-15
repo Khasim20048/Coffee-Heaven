@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Menu - Coffee Haven</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="/static/script.js"></script>
+</head>
+<body>
+    <!-- Notification System -->
+    <div id="notification-container"></div>
+    
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-spinner">
+            <div class="starbucks-logo">
+                <i class="fas fa-crown"></i>
+            </div>
+            <p>Loading Coffee Haven...</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-top">
+            <div class="container">
+                <p>Get 15% off on your first coffee purchase, use code - WELCOME15</p>
+            </div>
+        </div>
+        
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <h1>Coffee Haven</h1>
+                </div>
+                
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="{{url_for('index')}}" class="nav-link">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="orders.html" class="nav-link">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="menu.html" class="nav-link active">Menu</a>
+                    </li>
+                </ul>
+                
+                <div class="nav-controls">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="user-btn" id="userLoginBtn" onclick="redirectToLogin()">
+                        <i class="fas fa-user"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Menu Section -->
+        <section id="menu" class="section active">
+            <div class="container">
+                <div class="section-header">
+                    <h1>Our Menu</h1>
+                    <p>Explore our delicious coffee and food selection</p>
+                </div>
+                
+                <div class="menu-categories">
+                    <button class="category-btn active" data-category="all">All</button>
+                    <button class="category-btn" data-category="coffee">Coffee</button>
+                    <button class="category-btn" data-category="tea">Tea</button>
+                    <button class="category-btn" data-category="food">Food</button>
+                    <button class="category-btn" data-category="desserts">Desserts</button>
+                </div>
+
+                <div class="menu-grid">
+                    <div class="menu-item" data-category="coffee">
+                        <div class="menu-image">
+                            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&q=80" alt="Premium Blend">
+                        </div>
+                        <div class="menu-info">
+                            <h3>Premium Blend</h3>
+                            <p>Rich, Bold, Smooth - Our signature coffee blend</p>
+                            <div class="menu-price">₹540</div>
+                            <form action="/buy" method="POST">
+                                    <input type="hidden" name="product_name" value="Premium Blend">
+                                    <input type="hidden" name="price" value="540">
+                                    <button type="submit" class="btn-primary">BUY NOW +</button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item" data-category="coffee">
+                        <div class="menu-image">
+                            <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=400&q=80" alt="Dark Roast">
+                        </div>
+                        <div class="menu-info">
+                            <h3>Dark Roast</h3>
+                            <p>Strong, Cocoa, Bitter Sweet - For true coffee lovers</p>
+                            <div class="menu-price">₹500</div>
+                            <form action="/buy" method="POST">
+                                    <input type="hidden" name="product_name" value="Dark Roast">
+                                    <input type="hidden" name="price" value="500">
+                                    <button type="submit" class="btn-primary">BUY NOW +</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="menu-item" data-category="coffee">
+                        <div class="menu-image">
+                            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=400&q=80" alt="Vienna Roast">
+                        </div>
+                        <div class="menu-info">
+                            <h3>Vienna Roast</h3>
+                            <p>Cocoa, Oaky, Bitter Sweet - Medium-dark perfection</p>
+                            <div class="menu-price">₹500</div>
+                            <form action="/buy" method="POST">
+                                    <input type="hidden" name="product_name" value="Vienna Roast">
+                                    <input type="hidden" name="price" value="500">
+                                    <button type="submit" class="btn-primary">BUY NOW +</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="menu-item" data-category="coffee">
+                        <div class="menu-image">
+                            <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=400&q=80" alt="Cafe Blend">
+                        </div>
+                        <div class="menu-info">
+                            <h3>Cafe Blend</h3>
+                            <p>Hazelnut, Honey, Grapes - Sweet and aromatic</p>
+                            <div class="menu-price">₹540</div>
+                            <form action="/buy" method="POST">
+                                    <input type="hidden" name="product_name" value="Cafe Blend">
+                                    <input type="hidden" name="price" value="540">
+                                    <button type="submit" class="btn-primary">BUY NOW +</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="menu-item" data-category="tea">
+                        <div class="menu-image">
+                            <img src="https://i.pinimg.com/736x/06/fe/7b/06fe7bed487581e9550447b68c6fe626.jpg" alt="Green Tea">
+                        </div>
+                        <div class="menu-info">
+                            <h3>Green Tea</h3>
+                            <p>Fresh, Light, Refreshing - Antioxidant rich</p>
+                            <div class="menu-price">₹200</div>
+                            <form action="/buy" method="POST">
+                                <input type="hidden" name="product_name" value="Green Tea">
+                                <input type="hidden" name="price" value="200">
+                                <button type="submit" class="btn-primary">BUY NOW +</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="menu-item" data-category="tea">
+                        <div class="menu-image">
+                            <img src="https://i.pinimg.com/736x/c9/a3/f2/c9a3f2aebfa384a09f86274471f5c2ea.jpg" alt="Chai Latte">
+                        </div>
+                        <div class="menu-info">
+                            <h3>Chai Latte</h3>
+                            <p>Spiced, Creamy, Warming - Traditional Indian chai</p>
+                            <div class="menu-price">₹300</div>
+                            <form action="/buy" method="POST">
+                                <input type="hidden" name="product_name" value="Chai Latte">
+                                <input type="hidden" name="price" value="300">
+                                <button type="submit" class="btn-primary">BUY NOW +</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="menu-item" data-category="food">
+                        <div class="menu-image">
+                            <img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?auto=format&fit=crop&w=400&q=80" alt="Croissant">
+                        </div>
+                        <div class="menu-info">
+                            <h3>Butter Croissant</h3>
+                            <p>Flaky, Buttery, Fresh - Perfect with coffee</p>
+                            <div class="menu-price">₹150</div>
+                            <form action="/buy" method="POST">
+                                <input type="hidden" name="product_name" value="Butter Croissant">
+                                <input type="hidden" name="price" value="150">
+                                <button type="submit" class="btn-primary">BUY NOW +</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="menu-item" data-category="food">
+                        <div class="menu-image">
+                            <img src="https://i.pinimg.com/736x/4a/86/41/4a8641ee96aa08c42cea166581f50ab4.jpg" alt="Sandwich">
+                        </div>
+                        <div class="menu-info">
+                            <h3>Club Sandwich</h3>
+                            <p>Fresh, Filling, Delicious - Triple-decker goodness</p>
+                            <div class="menu-price">₹350</div>
+                            <form action="/buy" method="POST">
+                                    <input type="hidden" name="product_name" value="Club Sandwich">
+                                    <input type="hidden" name="price" value="350">
+                                    <button type="submit" class="btn-primary">BUY NOW +</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="menu-item" data-category="desserts">
+                        <div class="menu-image">
+                            <img src="https://i.pinimg.com/736x/51/8a/ee/518aeeae96e41df39b5274c40aa63619.jpg" alt="Chocolate Cake">
+                        </div>
+                        <div class="menu-info">
+                            <h3>Chocolate Cake</h3>
+                            <p>Rich, Moist, Decadent - Chocolate lover's dream</p>
+                            <div class="menu-price">₹250</div>
+                            <form action="/buy" method="POST">
+                                    <input type="hidden" name="product_name" value="Chocolate Cake">
+                                    <input type="hidden" name="price" value="250">
+                                    <button type="submit" class="btn-primary">BUY NOW +</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="menu-item" data-category="desserts">
+                        <div class="menu-image">
+                            <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=400&q=80" alt="Tiramisu">
+                        </div>
+                        <div class="menu-info">
+                            <h3>Tiramisu</h3>
+                            <p>Creamy, Coffee-infused, Italian classic</p>
+                            <div class="menu-price">₹300</div>
+                            <form action="/buy" method="POST">
+                                    <input type="hidden" name="product_name" value="Tiramisu">
+                                    <input type="hidden" name="price" value="300">
+                                    <button type="submit" class="btn-primary">BUY NOW +</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Coffee Haven</h3>
+                    <p>Premium coffee management system</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Dashboard</a></li>
+                        <li><a href="orders.html">Orders</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: info@coffeehaven.com</p>
+                    <p>Phone: +91 98765 43210</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Coffee Haven. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Advanced Modals -->
+    <div id="modal-overlay" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 id="modal-title">Modal Title</h2>
+                <button class="modal-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Modal content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

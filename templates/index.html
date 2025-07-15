@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Haven - Premium Coffee Shop</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="/static/script.js"></script>
+    <link rel="stylesheet" href="/static/payments.css">
+</head>
+<body>
+    <!-- Notification System -->
+    <div id="notification-container"></div>
+    
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-spinner">
+            <div class="starbucks-logo">
+                <i class="fas fa-crown"></i>
+            </div>
+            <p>Loading Starbucks...</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-top">
+            <div class="container">
+                <p>Get 15% off on your first coffee purchase, use code - WELCOME15</p>
+            </div>
+        </div>
+        
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <h1>Coffee Haven</h1>
+                </div>
+                
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="{{url_for('index')}}"class="nav-link active">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="orders.html" class="nav-link">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="menu.html" class="nav-link">Menu</a>
+                    </li>
+                </ul>
+                
+                <div class="nav-controls">
+                    <button class="user-btn" id="userLoginBtn" onclick="redirectToLogin()">
+                        <i class="fas fa-user"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <!-- Hero Section -->
+            <div class="hero-section">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1>Welcome to Coffee Haven</h1>
+                        <p>Discover our premium coffee collection and place your order online</p>
+                        <div class="hero-stats">
+                            <div class="hero-stat">
+                                <span class="stat-number">50+</span>
+                                <span class="stat-label">Coffee Varieties</span>
+                            </div>
+                            <div class="hero-stat">
+                                <span class="stat-number">15</span>
+                                <span class="stat-label">Min Delivery</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <div class="coffee-cup">
+                            <i class="fas fa-coffee"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Products -->
+            <div class="featured-section">
+                <div class="container">
+                    <h2>Bestseller Coffees</h2>
+                    <div class="product-grid">
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="https://i.pinimg.com/736x/7f/6a/b6/7f6ab61f2a384fc5b756f1e076db51ea.jpg" alt="Premium Blend">
+                            </div>
+                            <div class="product-info">
+                                <h3>Premium Blend</h3>
+                                <p class="product-description">Rich, Bold, Smooth</p>
+                                <div class="product-price">₹540</div>
+                                <form action="/buy" method="POST">
+                                    <input type="hidden" name="product_name" value="Premium Blend">
+                                    <input type="hidden" name="price" value="540">
+                                    <button type="submit" class="btn-primary">BUY NOW +</button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="https://i.pinimg.com/736x/2f/58/ba/2f58ba55edc38d10b3f9076e5c0f8cc2.jpg" alt="Dark Roast">
+                            </div>
+                            <div class="product-info">
+                                <h3>Dark Roast</h3>
+                                <p class="product-description">Strong, Cocoa, Bitter Sweet</p>
+                                <div class="product-price">₹500</div>
+                                <form action="/buy" method="POST">
+                                    <input type="hidden" name="product_name" value="Dark Roast">
+                                    <input type="hidden" name="price" value="540">
+                                    <button type="submit" class="btn-primary">BUY NOW +</button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="https://i.pinimg.com/736x/cd/1f/9b/cd1f9bd564113eef5c7d75c5a6594b63.jpg" alt="Vienna Roast">
+                            </div>
+                            <div class="product-info">
+                                <h3>Vienna Roast</h3>
+                                <p class="product-description">Cocoa, Oaky, Bitter Sweet</p>
+                                <div class="product-price">₹500</div>
+                                <form action="/buy" method="POST">
+                                    <input type="hidden" name="product_name" value="Vienna Roast">
+                                    <input type="hidden" name="price" value="540">
+                                    <button type="submit" class="btn-primary">BUY NOW +</button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="https://i.pinimg.com/736x/b2/3f/63/b23f63e5508732b67783bf1284bb4c94.jpg" alt="Cafe Blend">
+                            </div>
+                            <div class="product-info">
+                                <h3>Cafe Blend</h3>
+                                <p class="product-description">Hazelnut, Honey, Grapes</p>
+                                <div class="product-price">₹540</div>
+                                <form action="/buy" method="POST">
+                                    <input type="hidden" name="product_name" value="Cafe Blend">
+                                    <input type="hidden" name="price" value="540">
+                                    <button type="submit" class="btn-primary">BUY NOW +</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-section">
+                <div class="container">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-coffee"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>Popular Today</h3>
+                                <p class="stat-number">Premium Blend</p>
+                                <span class="stat-change positive">Most ordered</span>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>Customer Rating</h3>
+                                <p class="stat-number">4.8★</p>
+                                <span class="stat-change">Excellent</span>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>Delivery Time</h3>
+                                <p class="stat-number">15 min</p>
+                                <span class="stat-change positive">Fast delivery</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="actions-section">
+                <div class="container">
+                    <h2>Quick Actions</h2>
+                    <div class="action-grid">
+                        <button class="action-card">
+                            <i class="fas fa-shopping-cart"></i>
+                            <a href="{{url_for('menu')}}" class="nav-link">
+                            <span>Place Order</span>
+                            </a>
+                        </button>
+                        <button class="action-card">
+                            <i class="fas fa-university"></i>
+                            <a href="payments.html" class="nav-link">
+                            <span>Payments</span>
+                            </a>
+                        </button>
+                        <button class="action-card">
+                            <i class="fas fa-history"></i>
+                            <a href="{{url_for('orders')}}" class="nav-link">
+                            <span>Order History</span>
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Coffee Haven</h3>
+                    <p>Premium coffee shop for coffee lovers</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Dashboard</a></li>
+                        <li><a href="orders.html">Orders</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: coffeehaven2024@gmail.com</p>
+                    <p>Phone: +91 7995238213</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Coffee Haven. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Advanced Modals -->
+    <div id="modal-overlay" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 id="modal-title">Modal Title</h2>
+                <button class="modal-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Modal content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

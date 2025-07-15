@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders - Coffee Haven</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="/static/script.js"></script>
+</head>
+<body>
+    <!-- Notification System -->
+    <div id="notification-container"></div>
+    
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-spinner">
+            <div class="starbucks-logo">
+                <i class="fas fa-crown"></i>
+            </div>
+            <p>Loading Coffee Haven...</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-top">
+            <div class="container">
+                <p>Get 15% off on your first coffee purchase, use code - WELCOME15</p>
+            </div>
+        </div>
+        
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <h1>Coffee Haven</h1>
+                </div>
+                
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="{{url_for('index')}}" class="nav-link">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="orders.html" class="nav-link active">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="menu.html" class="nav-link">Menu</a>
+                    </li>
+                </ul>
+                
+                <div class="nav-controls">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="user-btn" id="userLoginBtn" onclick="redirectToLogin()">
+                        <i class="fas fa-user"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Orders Section -->
+        <section id="orders" class="section active">
+            <div class="container">
+                <div class="section-header">
+                    <h1>My Orders</h1>
+                    <p>Track your coffee orders and delivery status</p>
+                </div>
+
+                
+                <!-- Content will be loaded from backend -->
+                <div id="orders-content">
+                    <!-- This div will be populated entirely by your backend -->
+                     {%if orders%}
+                     <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+                    <thead>
+                        <tr style="background-color:rgb(1, 1, 1); text-align: left;">
+                        <th style="padding: 10px; border: 1px solid #ccc;">Order ID</th>
+                                <th style="padding: 10px; border: 1px solid #ccc;">Product Name</th>
+                                <th style="padding: 10px; border: 1px solid #ccc;">Price</th>
+                        </tr>
+                    </thead>
+                    {% for order in orders %}
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ccc;">{{ order[0] }}</td>
+                                    <td style="padding: 10px; border: 1px solid #ccc;">{{ order[1] }}</td>
+                                    <td style="padding: 10px; border: 1px solid #ccc;">&#8377;{{ order[2] }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p style="margin-top: 20px;">No orders yet.</p>
+                {% endif %}
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Coffee Haven</h3>
+                    <p>Premium coffee shop for coffee lovers</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Dashboard</a></li>
+                        <li><a href="orders.html">Orders</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: info@coffeehaven.com</p>
+                    <p>Phone: +91 98765 43210</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Coffee Haven. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Advanced Modals -->
+    <div id="modal-overlay" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 id="modal-title">Modal Title</h2>
+                <button class="modal-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Modal content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
