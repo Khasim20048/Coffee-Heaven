@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payments - Coffee Haven</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/payments.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="/static/payments.js"></script>
+</head>
+<body>
+    <!-- Notification System -->
+    <div id="notification-container"></div>
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-spinner">
+            <div class="starbucks-logo">
+                <i class="fas fa-crown"></i>
+            </div>
+            <p>Loading Coffee Haven...</p>
+        </div>
+    </div>
+    <!-- Floating Coffee Icons -->
+    <div class="floating-coffee">
+        <i class="fas fa-coffee"></i>
+    </div>
+    <div class="floating-coffee">
+        <i class="fas fa-mug-hot"></i>
+    </div>
+    <div class="floating-coffee">
+        <i class="fas fa-coffee"></i>
+    </div>
+    <!-- Back to Home Button -->
+    <button class="back-to-home-btn">
+        <i class="fas fa-arrow-left"></i>
+        <a href="/" class="nav-link">Back to Home</a>
+    </button>
+    <!-- Payment Container -->
+    <div class="login-container">
+        <div class="login-card dark-card payment-card fade-in">
+            <div class="login-header">
+                <h1 class="login-title">Coffee Haven</h1>
+            </div>
+            <form action="/paytm/checkout" method="POST" class="payment-form">
+                <div class="payment-methods">
+                    <div class="payment-method-card selected" id="method-upi" tabindex="0">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>UPI</span>
+                    </div>
+                    <div class="payment-method-card" id="method-card" tabindex="0">
+                        <i class="far fa-credit-card"></i>
+                        <span>Card</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="order_id">Order ID</label>
+                    <input type="text" id="order_id" name="order_id" placeholder="Enter your Order ID" required>
+                </div>
+                <div class="form-group">
+                    <label for="amount">Amount (INR)</label>
+                    <input type="number" id="amount" name="amount" placeholder="Enter amount" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number (Paytm)</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter your Paytm phone number" pattern="[6-9]{1}[0-9]{9}" maxlength="10" required>
+                </div>
+                <div id="upi-fields" class="form-group">
+                    <label for="upi_id">UPI ID</label>
+                    <input type="text" id="upi_id" name="upi_id" placeholder="example@upi">
+                </div>
+                <div id="card-fields" style="display: none;">
+                    <div class="form-group">
+                        <label for="card_number">Card Number</label>
+                        <input type="text" id="card_number" name="card_number" maxlength="19" placeholder="1234 5678 9012 3456">
+                    </div>
+                    <div class="form-row" style="display: flex; gap: 12px;">
+                        <div class="form-group" style="flex:1;">
+                            <label for="expiry">Expiry</label>
+                            <input type="text" id="expiry" name="expiry" maxlength="5" placeholder="MM/YY">
+                        </div>
+                        <div class="form-group" style="flex:1;">
+                            <label for="cvv">CVV</label>
+                            <input type="password" id="cvv" name="cvv" maxlength="4" placeholder="CVV">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="login-btn gold-btn" style="width: 100%; font-size: 18px; margin-top: 20px;">
+                    <i class="fab fa-cc-amazon-pay"></i> PAY NOW
+                </button>
+            </form>
+        </div>
+    </div>
+    <!-- Toast Notifications -->
+    <div id="toast-container"></div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var loadingOverlay = document.getElementById('loading-overlay');
+        if (loadingOverlay) loadingOverlay.style.display = 'none';
+    });
+    </script>
+</body>
+</html> 
